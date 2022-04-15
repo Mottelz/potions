@@ -1,6 +1,6 @@
 # Potions
 
-This is a basic project to teach Flask. As routes are added, they will be added to the route.
+This is a basic project to teach Flask. As routes are added, they will be added to the doc.
 
 
 ## Routes
