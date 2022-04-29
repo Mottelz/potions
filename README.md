@@ -7,11 +7,18 @@ This is a basic project to teach Flask. As routes are added, they will be added 
 - `/`: 
   - `GET`: Returns a welcome message.
 - `/inventory`: 
-  - `GET`: Returns entire inventory.
-- `/inventory/<category>/<id>`: 
-  - `GET`: Returns the selected item. Use `/inventory` for complete list.
+  - `GET`: Returns entire inventory
+- `/potions`
+  - `POST`: Adds a potion to database the redirects to `/inventory`
 
-## Files
+## Models
+- `Potion`
+ - `id (int)`: generated automatically.
+ - `name (string)`: the name of the potion. unique.
+ - `quantity (int)`: the amount in stock.
+ - `price (int)`: the amount in gold pieces.
+
+## Files & Folders
 - `app.py`: Contains the controller (aka the routes and logic)
-- `deprecated.py`: Code snippets for teaching purposes
-- `staticModel.py`: Code to get hardcoded data.
+- `deprecated`: Code files no longer used. Kept for demo purposes.
+- `model.py`: Contains the model
