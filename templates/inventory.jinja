@@ -1,12 +1,28 @@
-{% extends 'base.jinja' %}
-{%block title%} Inventory {%endblock%}
+{% include 'part/header.jinja'%}
+
+<h1>{{ title }}</h1>
 
 {% if potion %}
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Cost</th>
+        <th>Qty</th>
+    </tr>
 
-{%block content%}
-<p>It works</p>
-{%endblock%}
+{% for p in potion %}
+<tr>
+    <td>{{p.id}}</td>
+    <td>{{p.name}}</td>
+    <td>{{p.price}}</td>
+    <td>{{p.quantity}}</td>
+</tr>
+{% endfor %}
 
+</table>
 {% else %}
-
+<p>Nothing to sell :(</p>
 {% endif %}
+
+{% include 'part/footer.jinja'%}
