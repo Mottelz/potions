@@ -1,3 +1,4 @@
+from turtle import title
 from flask import Flask, redirect, render_template, request, url_for
 from model import db, Potion
 
@@ -9,11 +10,11 @@ db.init_app(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('home.jinja')
+    return render_template('page.jinja', title='Home', msg='Welcome home!')
 
 @app.route('/about')
 def about():
-    return render_template('about.jinja')
+    return render_template('about.jinja', title='About', msg='This is the about page.')
 
 
 @app.route('/inventory')
