@@ -1,30 +1,25 @@
-from operator import contains
-from flask import Flask, redirect, request, url_for, jsonify
+from flask import Flask, redirect, render_template, request, url_for
 from model import db, Potion
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return 'You are now home'
+    return render_template('home.jinja')
+
+@app.route('/about')
+def about():
+    return render_template('about.jinja')
 
 
 @app.route('/inventory')
 def inventory():
     data = Potion.query.all()
-    potions = []
-    if type(data) == type([]):
-        for p in data:
-            potions.append(p.to_dict())
-    else:
-        potions.append(data.to_dict())
-    stock = {
-        'potions': potions
-    }
-    return stock
+    return render_template('inventory.jinja', potion=data)
 
 
 @app.route('/potions', methods=['POST'])

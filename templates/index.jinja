@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <!-- Add Nav Here -->
+    </header>
+    <main>
+        <h1>Home</h1>
+        <p>{{ msg }}</p>
+        {% if not letters %}
+            <p>No letters :(</p>
+        {% else %}
+        <ul>
+            {% for letter in letters %}
+            <li>{{ letter }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </main>
+    <footer>
+        <h6>&copy; copyright to me 2022.</h6>
+    </footer>
+
+</body>
+</html>
