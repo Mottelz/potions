@@ -43,4 +43,4 @@ def filter_items():
     else:
         f_max = request.form['max']
         data = Potion.query.filter(Potion.price <= int(f_max)).all()
-        return render_template('inventory.html', title="Search results", potions=data)
+        return render_template('inventory.html', title='Search results', potions=data)

@@ -1,8 +1,9 @@
 {% macro navmenu(current) %}
 <nav>
-    <a href="{{url_for('home')}}"> Home </a> 
-    <a href="{{url_for('inventory')}}">Inventory</a>
-    <a href="{{url_for('create_potion')}}">Add</a>
-    <a href="{{url_for('filter_items')}}">Search</a>
+    <a href="{{url_for('home')}}" {% if title == 'Home' %} class="active" {% endif %}>Home</a> |  
+    <a href="{{url_for('about')}}" {% if title == 'About' %} class="active" {% endif %}>About</a> |
+    <a href="{{url_for('inventory')}}" {% if title == 'Inventory' %} class="active" {% endif %}>Inventory</a> | 
+    <a href="{{url_for('create_potion')}}" {% if title == 'Add a Potion' %} class="active" {% endif %}>Add</a> | 
+    <a href="{{url_for('filter_items')}}" {% if title == 'Search' %} class="active" {% endif %}>Search</a>
 </nav>
 {% endmacro %}
