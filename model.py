@@ -10,6 +10,3 @@ class Potion(db.Model):
 
     def __repr__(self):
         return f'{self.id}: {self.name}\tqty: {self.quantity}\tprice: {self.price}'
-    
-    def to_dict(self):
-        return {'id': self.id, 'name': self.name, 'quantity': self.quantity, 'price': self.price}

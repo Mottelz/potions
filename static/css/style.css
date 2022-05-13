@@ -1,0 +1,9 @@
+h1 {
+    color: blueviolet;
+}
+
+.active {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}

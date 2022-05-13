@@ -9,32 +9,38 @@ db.init_app(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('page.jinja', title='Home', msg='Welcome home!')
+    return render_template('page.html', title='Home', message='Welcome home!')
 
 @app.route('/about')
 def about():
-    return render_template('about.jinja', title='About', msg='This is the about page.')
+    return render_template('page.html', title='About', message='This is the about page. We have nothing to talk about yet.')
 
 
 @app.route('/inventory')
 def inventory():
     data = Potion.query.all()
-    potions = []
-    if type(data) is not type([]):
-        potions.append(data.to_dict())
-    else:
-        for p in data:
-            potions.append(p.to_dict())
-
-    return render_template('inventory.jinja', title='Inventory', potion=potions)
+    return render_template('inventory.html', title='Inventory', potions=data)
 
 
-@app.route('/potions', methods=['POST'])
+@app.route('/potion', methods=['GET','POST'])
 def create_potion():
-    f_name = request.form['name']
-    f_quantity = request.form['quantity']
-    f_price = request.form['price']
-    to_add = Potion(name=f_name, quantity=f_quantity, price=f_price)
-    db.session.add(to_add)
-    db.session.commit()
-    return redirect(url_for('inventory'))
+    if request.method == 'GET':
+        return render_template('potion.html', title='Add a Potion')
+    else:
+        f_name = request.form['name']
+        f_quantity = request.form['quantity']
+        f_price = request.form['price']
+        to_add = Potion(name=f_name, quantity=f_quantity, price=f_price)
+        db.session.add(to_add)
+        db.session.commit()
+        return redirect(url_for('inventory'))
+
+
+@app.route('/filter-items', methods=['GET', 'POST'])
+def filter_items():
+    if request.method == 'GET':
+        return render_template('search.html', title='Search')
+    else:
+        f_max = request.form['max']
+        data = Potion.query.filter(Potion.price <= int(f_max)).all()
+        return render_template('inventory.html', title="Search results", potions=data)
